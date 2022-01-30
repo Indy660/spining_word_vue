@@ -1,15 +1,21 @@
 <template>
-  <div class="main"  @mouseleave="returnDefaultIndex">
+  <div :style="mainGridStyle" class="main"  @mouseleave="returnDefaultIndex">
     <template v-for="item in cellsAtScreen">
       <CellComponent @mouseenter.native="changeIndex(item)" :key="item"/>
     </template>
-
 
     <div class="content">
 <!--      @click="$log(item)"-->
 <!--      :ref="'inscription_' + item"-->
       <template v-for="item in timesInscription">
-        <InscriptionName :positionX.sync="mousePositionX"  :positionY.sync="mousePositionY" :order="item"  :key="item"/>
+        <InscriptionName
+            :positionX="mousePositionX"
+            :positionY="mousePositionY"
+            :basicPositionX="basicPositionX"
+            :basicPositionY="basicPositionY"
+            :order="item"
+            :key="item"
+        />
       </template>
     </div>
   </div>
@@ -37,7 +43,18 @@ export default {
   computed: {
     cellsAtScreen() {
       return (this.rows * this.columns)
-    }
+    },
+    mainGridStyle() {
+      return {
+        gridTemplate: `repeat(${this.rows}, 1fr) / repeat(${this.columns}, 1fr)`
+      }
+    },
+    basicPositionX() {
+      return Math.ceil(this.columns / 2)
+    },
+    basicPositionY() {
+      return Math.ceil(this.rows / 2)
+    },
   },
   methods: {
     changeIndex(cellIndex) {
@@ -46,11 +63,11 @@ export default {
       // console.log(this.mousePositionX,  this.mousePositionY)
     },
     returnDefaultIndex() {
-      this.mousePositionX = 7;
-      this.mousePositionY = 7;
+      this.mousePositionX = this.basicPositionX;
+      this.mousePositionY = this.basicPositionY;
       // console.log(this.mousePositionX,  this.mousePositionY)
     },
-  }
+  },
 }
 </script>
 
@@ -67,8 +84,8 @@ export default {
   background-color: black;
   height: 100vh;
   display: grid;
-  /*//grid-template: repeat(v-bind(rows), 1fr) / repeat(v-bind(columns), 1fr);*/
-  grid-template: repeat(15, 1fr) / repeat(15, 1fr);
+  /*grid-template: repeat(v-bind(rows), 1fr) / repeat(v-bind(columns), 1fr);*/
+  /*grid-template: repeat(15, 1fr) / repeat(15, 1fr);*/
   overflow: hidden;
 }
 
