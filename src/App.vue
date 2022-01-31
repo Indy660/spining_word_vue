@@ -1,5 +1,10 @@
 <template>
-  <div :style="mainGridStyle" class="main"  @mouseleave="returnDefaultIndex">
+  <div
+      :style="mainGridStyle"
+      :class="{'padding-right': showSidebar}"
+      class="main"
+      @mouseleave="returnDefaultIndex"
+  >
     <template v-for="item in cellsAtScreen">
       <CellComponent @mouseenter.native="changeIndex(item)" :key="item"/>
     </template>
@@ -19,17 +24,20 @@
         />
       </template>
     </div>
+    <Sidebar v-if="showSidebar"/>
   </div>
 </template>
 
 <script>
 import CellComponent from "@/components/CellComponent";
 import InscriptionName from "@/components/InscriptionName";
+import Sidebar from "@/components/Sidebar";
 export default {
   name: 'App',
   components: {
     CellComponent,
     InscriptionName,
+    Sidebar,
   },
   data() {
     return {
@@ -37,8 +45,10 @@ export default {
       columns: 15,
       timesInscription: 10,
 
-      mousePositionX: 7,
-      mousePositionY: 7,
+      mousePositionX: 0,
+      mousePositionY: 0,
+
+      showSidebar: false,
     }
   },
   computed: {
@@ -56,6 +66,9 @@ export default {
     basicPositionY() {
       return Math.ceil(this.rows / 2)
     },
+  },
+  mounted() {
+    this.returnDefaultIndex()
   },
   methods: {
     changeIndex(cellIndex) {
@@ -85,9 +98,14 @@ export default {
   background-color: black;
   height: 100vh;
   display: grid;
-  /*grid-template: repeat(v-bind(rows), 1fr) / repeat(v-bind(columns), 1fr);*/
   /*grid-template: repeat(15, 1fr) / repeat(15, 1fr);*/
   overflow: hidden;
+}
+
+.padding-right {
+  padding-right: 350px;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .content {
@@ -96,5 +114,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 </style>
