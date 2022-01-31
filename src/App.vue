@@ -14,6 +14,7 @@
             :basicPositionX="basicPositionX"
             :basicPositionY="basicPositionY"
             :order="item"
+            :timesInscription="timesInscription"
             :key="item"
         />
       </template>

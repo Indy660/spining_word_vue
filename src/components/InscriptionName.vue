@@ -10,6 +10,10 @@ export default {
       type: Number,
       default: 1,
     },
+    timesInscription: {
+      type: Number,
+      default: 1,
+    },
     positionX: {
       type: Number,
       default: 1,
@@ -29,19 +33,14 @@ export default {
   },
   data() {
     return {
-      inscription: 'CSS'
+      inscription: 'CSS',
+      colorInscription: 0,
     }
   },
   computed: {
     computedStyle() {
-      /*  @keyframes color {*/
-      /*    @for $c from 0 through 10 {*/
-      /*      #{$c * 10%} { color: hsl(36 * $c, 75%, 75%); }*/
-      /*    }*/
-      /*  }*/
       return {
-        color:  `hsl(calc(36 * ${this.order}), 75%, 75%)`,
-        // color:  changeColors(50, 500),
+        // color:  `hsl(calc(36 * ${this.order}), 75%, 75%)`,
         fontSize: `calc(100px + ${this.order} * 10px)`,
         animationDelay: `calc(-0.3s + ${this.order}s)`,
         opacity: `calc(0.1 +  ${this.order} * 0.1)`,
@@ -52,14 +51,28 @@ export default {
          rotateY(calc((${this.positionX} - ${this.basicPositionX}) * 5deg))
          `
       }
+    },
+    stepColor() {
+      return Math.ceil(360  / this.timesInscription);
+    },
+    startColor() {
+      return this.stepColor * this.order;
     }
   },
   mounted() {
-    // setInterval(() => {
-    //   console.log(this.$refs.inscription.style)
-    //   this.$refs.inscription.style.color = `hsl(++50% 360}, 100%, 50%)`,
-    //       500
-    // })
+    this.colorInscription = this.startColor;
+    this.updateColor()
+    setInterval(() => this.updateColor(), 2000)
+  },
+  methods: {
+    updateColor() {
+      this.colorInscription = this.colorInscription + this.stepColor
+      if (this.colorInscription / 360 >= 1) {
+        this.colorInscription = 0
+      }
+      this.$refs.inscription.style.color = `hsl(${this.colorInscription}, 100%, 50%)`
+      // console.log(1)
+    }
   },
 }
 </script>
