@@ -41,8 +41,8 @@ export default {
   },
   data() {
     return {
-      rows: 15,
-      columns: 15,
+      rows: 20,
+      columns:10,
       timesInscription: 10,
 
       mousePositionX: 0,
@@ -72,14 +72,13 @@ export default {
   },
   methods: {
     changeIndex(cellIndex) {
-      this.mousePositionX = cellIndex > this.columns ? (cellIndex % this.rows) === 0 ? this.columns : (cellIndex % this.rows) : cellIndex;
+      this.mousePositionX = cellIndex > this.columns ? cellIndex % this.columns  === 0 ? this.columns : (cellIndex % this.columns) : cellIndex
       this.mousePositionY = cellIndex > this.columns ? Math.ceil(cellIndex / this.columns) : 1;
       // console.log(this.mousePositionX,  this.mousePositionY)
     },
     returnDefaultIndex() {
       this.mousePositionX = this.basicPositionX;
       this.mousePositionY = this.basicPositionY;
-      // console.log(this.mousePositionX,  this.mousePositionY)
     },
   },
 }
