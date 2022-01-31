@@ -1,5 +1,5 @@
 <template>
-  <div ref="inscription" class="name" :style="computedStyle">{{ inscription }}</div>
+  <div class="name" :style="computedStyle">{{ inscription }}</div>
 </template>
 
 <script>
@@ -41,6 +41,7 @@ export default {
     computedStyle() {
       return {
         // color:  `hsl(calc(36 * ${this.order}), 75%, 75%)`,
+        color: `hsl(${this.colorInscription}, 100%, 50%)`,
         fontSize: `calc(100px + ${this.order} * 10px)`,
         animationDelay: `calc(-0.3s + ${this.order}s)`,
         opacity: `calc(0.1 +  ${this.order} * 0.1)`,
@@ -62,7 +63,7 @@ export default {
   mounted() {
     this.colorInscription = this.startColor;
     this.updateColor()
-    setInterval(() => this.updateColor(), 2000)
+    setInterval(() => this.updateColor(), 200)
   },
   methods: {
     updateColor() {
@@ -70,8 +71,6 @@ export default {
       if (this.colorInscription / 360 >= 1) {
         this.colorInscription = 0
       }
-      this.$refs.inscription.style.color = `hsl(${this.colorInscription}, 100%, 50%)`
-      // console.log(1)
     }
   },
 }
