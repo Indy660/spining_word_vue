@@ -1,7 +1,8 @@
 <template>
+<!--  :value="model"-->
+<!--  @input="inputEmit"-->
   <input
-      :value="model"
-      @input="inputEmit"
+    v-model="inputModel"
   />
 </template>
 <script>
@@ -16,12 +17,27 @@ export default {
       type: String,
       default: ''
     },
-  },
-  methods: {
-    inputEmit(newValue) {
-      setTimeout(() => this.$emit('update:model', newValue.target.value), 300);
+    action: {
+      type: String,
+      default: ''
     }
-  }
+  },
+  computed: {
+    inputModel: {
+      get () {
+        // return this.model
+        // return this.$store.state.settingInscription.inscription
+        // console.log(this.$store.state.settingInscription.inscription)
+        // console.log(this.$store.state, this.model)
+        // console.log(this.$store.state[this.model])
+        return this.$store.state.settingInscription[this.model]
+        // return this.$store.state[this.model]
+      },
+      set (value) {
+        setTimeout(() => this.$store.commit(this.action, value), 300);
+      }
+    }
+  },
 }
 </script>
 <style scoped>

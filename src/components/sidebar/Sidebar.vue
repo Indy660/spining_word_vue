@@ -10,11 +10,13 @@
               :model.sync="item.model"
               :min="item.min"
               :max="item.max"
+              :action="item.action"
           />
         </template>
        <template v-else>
          <SimpleInput
              :model.sync="item.model"
+             :action="item.action"
          />
        </template>
      </div>
@@ -36,33 +38,41 @@ export default {
       sidebarSettings: [
         {
           type: 'input',
-          model: 'CSS2',
+          model: 'inscription',
+          // model: 'settingInscription.inscription',
           text: 'Надпись',
+          action: 'updateInscriptionName',
         },
         {
           type: 'range',
-          model: 20,
+          model: 'columns',
+          // model: this.columns,
           text: 'Количество колонн',
           min: 5,
           max: 100,
+          action: 'updateColumnsNumber',
         },
         {
           type: 'range',
-          model: 20,
+          model: 'rows',
+          // model: 'mainScreen.rows',
           text: 'Количество рядов',
           min: 5,
           max: 100,
+          action: 'updateRowsNumber',
         },
         {
           type: 'range',
-          model: 10,
+          model: 'timesInscription',
+          // model: this.timesInscription,
           text: 'Количество надписей',
           min: 1,
-          max: 30,
+          max: 80,
+          action: 'updateTimesInscription',
         },
       ]
     }
-  }
+  },
 }
 </script>
 

@@ -24,7 +24,7 @@
         />
       </template>
     </div>
-    <Sidebar v-if="showSidebar"/>
+    <Sidebar v-if="showSidebar" @mouseleave="returnDefaultIndex"/>
   </div>
 </template>
 

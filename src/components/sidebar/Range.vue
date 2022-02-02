@@ -1,15 +1,16 @@
 <template>
+<!--  :value="model"-->
+<!--  @input="inputEmit"-->
  <div class="range">
     <input
         type="range"
         :min="min" :max="max"
         step="1"
-        :value="model"
-        @input="inputEmit"
+        v-model="inputModel"
     >
     <div class="numbers">
       <div class="min">{{ min }}</div>
-      <div class="data">{{ model }}</div>
+      <div class="data">{{ inputModel }}</div>
       <div class="max">{{ max }}</div>
     </div>
  </div>
@@ -20,8 +21,12 @@
    name: 'Range',
    props: {
      model: {
-       type: Number,
-       default: 20,
+       type: String,
+       default: ''
+     },
+     action: {
+       type: String,
+       default: ''
      },
      min: {
        type: Number,
@@ -32,11 +37,19 @@
        default: 100,
      },
    },
-   methods: {
-     inputEmit(newValue) {
-       setTimeout(() => this.$emit('update:model', parseInt(newValue.target.value)), 500);
+   computed: {
+     inputModel: {
+       get () {
+         // return this.model
+         return this.$store.state.mainScreen[this.model]
+       },
+       set (value) {
+         console.log(value)
+         // this.$store.commit(this.action, value)
+         setTimeout(() => this.$store.commit(this.action,  parseInt(value)), 300);
+       }
      }
-   }
+   },
  }
 </script>
 

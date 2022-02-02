@@ -33,14 +33,13 @@ export default {
   },
   data() {
     return {
-      inscription: 'CSS',
       colorInscription: 0,
     }
   },
   computed: {
-    // inscription() {
-    //   return this.$store.state.settingInscription.inscription
-    // },
+    inscription() {
+      return this.$store.state.settingInscription.inscription
+    },
     computedStyle() {
       return {
         // color:  `hsl(calc(36 * ${this.order}), 75%, 75%)`,

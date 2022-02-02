@@ -11,7 +11,7 @@ export default new Vuex.Store({
       columns: 20,
     },
     settingInscription: {
-      inscription: 'CSS'
+      inscription: 'CSS',
     }
   },
   getters: {
@@ -29,6 +29,18 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    updateTimesInscription(state, number) {
+      state.mainScreen.timesInscription = number
+    },
+    updateRowsNumber(state, number) {
+      state.mainScreen.rows = number
+    },
+    updateColumnsNumber(state, number) {
+      state.mainScreen.columns = number
+    },
+    updateInscriptionName(state, name) {
+      state.settingInscription.inscription = name
+    }
   },
   actions: {
   },
