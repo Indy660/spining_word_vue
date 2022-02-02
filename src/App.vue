@@ -41,10 +41,6 @@ export default {
   },
   data() {
     return {
-      rows: 20,
-      columns: 20,
-      timesInscription: 20,
-
       mousePositionX: 0,
       mousePositionY: 0,
 
@@ -52,6 +48,15 @@ export default {
     }
   },
   computed: {
+    rows() {
+      return this.$store.state.mainScreen.rows;
+    },
+    columns() {
+      return this.$store.state.mainScreen.columns;
+    },
+    timesInscription() {
+      return this.$store.state.mainScreen.timesInscription;
+    },
     cellsAtScreen() {
       return (this.rows * this.columns)
     },

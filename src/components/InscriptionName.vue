@@ -38,6 +38,9 @@ export default {
     }
   },
   computed: {
+    // inscription() {
+    //   return this.$store.state.settingInscription.inscription
+    // },
     computedStyle() {
       return {
         // color:  `hsl(calc(36 * ${this.order}), 75%, 75%)`,
