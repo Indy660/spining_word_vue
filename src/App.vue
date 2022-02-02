@@ -31,7 +31,7 @@
 <script>
 import CellComponent from "@/components/CellComponent";
 import InscriptionName from "@/components/InscriptionName";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/sidebar/Sidebar";
 export default {
   name: 'App',
   components: {
@@ -42,13 +42,13 @@ export default {
   data() {
     return {
       rows: 20,
-      columns:10,
-      timesInscription: 10,
+      columns: 20,
+      timesInscription: 20,
 
       mousePositionX: 0,
       mousePositionY: 0,
 
-      showSidebar: false,
+      showSidebar: true,
     }
   },
   computed: {
