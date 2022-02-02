@@ -11,7 +11,7 @@ export default new Vuex.Store({
       columns: 20,
     },
     settingInscription: {
-      name: 'CSS'
+      inscription: 'CSS'
     }
   },
   getters: {
@@ -23,6 +23,9 @@ export default new Vuex.Store({
     },
     columns(state) {
       return state.columns
+    },
+    inscription(state) {
+      return state.inscription
     },
   },
   mutations: {
