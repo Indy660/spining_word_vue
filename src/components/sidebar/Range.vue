@@ -40,12 +40,9 @@
    computed: {
      inputModel: {
        get () {
-         // return this.model
          return this.$store.state.mainScreen[this.model]
        },
        set (value) {
-         console.log(value)
-         // this.$store.commit(this.action, value)
          setTimeout(() => this.$store.commit(this.action,  parseInt(value)), 300);
        }
      }
