@@ -97,7 +97,6 @@ export default {
   background-color: black;
   height: 100vh;
   display: grid;
-  /*grid-template: repeat(15, 1fr) / repeat(15, 1fr);*/
   overflow: hidden;
 }
 

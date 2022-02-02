@@ -1,8 +1,8 @@
 <template>
   <input
-      v-model="inputModel"
-      :placeholder="placeholder"
-  >
+      :value="model"
+      @input="inputEmit"
+  />
 </template>
 <script>
 export default {
@@ -17,16 +17,11 @@ export default {
       default: ''
     },
   },
-  computed: {
-    inputModel: {
-      get: function () {
-        return this.model
-      },
-      set: function (newValue) {
-        this.$emit('update:model', newValue)
-      }
+  methods: {
+    inputEmit(newValue) {
+      setTimeout(() => this.$emit('update:model', newValue.target.value), 300);
     }
-  },
+  }
 }
 </script>
 <style scoped>

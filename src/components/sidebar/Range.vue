@@ -4,10 +4,13 @@
         type="range"
         :min="min" :max="max"
         step="1"
-        v-model="inputModel"
+        :value="model"
+        @input="inputEmit"
     >
-    <div>
-      <div class="data">Slider value: {{ inputModel }}/ {{ max }}</div>
+    <div class="numbers">
+      <div class="min">{{ min }}</div>
+      <div class="data">{{ model }}</div>
+      <div class="max">{{ max }}</div>
     </div>
  </div>
 </template>
@@ -29,16 +32,11 @@
        default: 100,
      },
    },
-   computed: {
-     inputModel: {
-       get: function () {
-         return this.model
-       },
-       set: function (newValue) {
-         this.$emit('update:model', newValue)
-       }
+   methods: {
+     inputEmit(newValue) {
+       setTimeout(() => this.$emit('update:model', parseInt(newValue.target.value)), 500);
      }
-   },
+   }
  }
 </script>
 
@@ -130,5 +128,15 @@
   }
   input[type=range]:focus::-ms-fill-upper {
     background: transparent;
+  }
+  .numbers {
+    display: flex;
+    justify-content: space-around;
+  }
+  .numbers .data {
+    font-size: 20px;
+  }
+  .numbers .min, .numbers .max {
+    margin: 0 10px;
   }
 </style>
