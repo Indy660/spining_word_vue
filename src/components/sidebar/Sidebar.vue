@@ -7,7 +7,7 @@
        </div>
         <template v-if="item.type === 'range'">
           <Range
-              :model.sync="item.model"
+              :stateProp="item.stateProp"
               :min="item.min"
               :max="item.max"
               :action="item.action"
@@ -15,7 +15,7 @@
         </template>
        <template v-else>
          <SimpleInput
-             :model.sync="item.model"
+             :stateProp="item.stateProp"
              :action="item.action"
          />
        </template>
@@ -38,15 +38,13 @@ export default {
       sidebarSettings: [
         {
           type: 'input',
-          model: 'inscription',
-          // model: 'settingInscription.inscription',
+          stateProp: ['settingInscription', 'inscription'],
           text: 'Надпись',
           action: 'updateInscriptionName',
         },
         {
           type: 'range',
-          model: 'columns',
-          // model: this.columns,
+          stateProp: ['mainScreen', 'columns'],
           text: 'Количество колонн',
           min: 5,
           max: 100,
@@ -54,8 +52,7 @@ export default {
         },
         {
           type: 'range',
-          model: 'rows',
-          // model: 'mainScreen.rows',
+          stateProp: ['mainScreen', 'rows'],
           text: 'Количество рядов',
           min: 5,
           max: 100,
@@ -63,8 +60,7 @@ export default {
         },
         {
           type: 'range',
-          model: 'timesInscription',
-          // model: this.timesInscription,
+          stateProp: ['mainScreen', 'timesInscription'],
           text: 'Количество надписей',
           min: 1,
           max: 80,

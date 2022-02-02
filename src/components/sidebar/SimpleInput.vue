@@ -9,13 +9,9 @@
 export default {
   name: 'simpleInput',
   props: {
-    placeholder: {
-      type: String,
-      default: ''
-    },
-    model: {
-      type: String,
-      default: ''
+    stateProp: {
+      type: Array,
+      default: () => [],
     },
     action: {
       type: String,
@@ -25,13 +21,8 @@ export default {
   computed: {
     inputModel: {
       get () {
-        // return this.model
-        // return this.$store.state.settingInscription.inscription
-        // console.log(this.$store.state.settingInscription.inscription)
-        // console.log(this.$store.state, this.model)
-        // console.log(this.$store.state[this.model])
-        return this.$store.state.settingInscription[this.model]
-        // return this.$store.state[this.model]
+        let path = this.$store.state
+        return this.stateProp.reduce((current, key) => current?.[key], path)
       },
       set (value) {
         setTimeout(() => this.$store.commit(this.action, value), 300);

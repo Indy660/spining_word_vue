@@ -1,6 +1,4 @@
 <template>
-<!--  :value="model"-->
-<!--  @input="inputEmit"-->
  <div class="range">
     <input
         type="range"
@@ -20,9 +18,9 @@
  export default {
    name: 'Range',
    props: {
-     model: {
-       type: String,
-       default: ''
+     stateProp: {
+       type: Array,
+       default: () => [],
      },
      action: {
        type: String,
@@ -40,7 +38,8 @@
    computed: {
      inputModel: {
        get () {
-         return this.$store.state.mainScreen[this.model]
+         let path = this.$store.state
+         return this.stateProp.reduce((current, key) => current?.[key], path)
        },
        set (value) {
          setTimeout(() => this.$store.commit(this.action,  parseInt(value)), 300);
