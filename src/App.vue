@@ -1,12 +1,12 @@
 <template>
   <div
       :style="mainGridStyle"
-      :class="{'padding-right': showSidebar}"
+      :class="{'padding_right': showSidebar}"
       class="main"
       @mouseleave="returnDefaultIndex"
   >
     <template v-for="item in cellsAtScreen">
-      <CellComponent @mouseenter.native="changeIndex(item)" :key="item"/>
+      <CellComponent @click.native="showSidebarFunc(false)" @mouseenter.native="changeIndex(item)" :key="item"/>
     </template>
 
     <div class="content">
@@ -24,7 +24,14 @@
         />
       </template>
     </div>
-    <Sidebar v-if="showSidebar" @mouseleave="returnDefaultIndex"/>
+
+    <ButtonShowSidebar
+        class="sidebar_button"
+        @click.native.stop="showSidebarFunc(true)"
+        v-if="!showSidebar"
+    />
+    <Sidebar @click.stop v-if="showSidebar" @mouseleave="returnDefaultIndex"/>
+
   </div>
 </template>
 
@@ -32,19 +39,21 @@
 import CellComponent from "@/components/CellComponent";
 import InscriptionName from "@/components/InscriptionName";
 import Sidebar from "@/components/sidebar/Sidebar";
+import ButtonShowSidebar from "@/components/ButtonShowSidebar";
 export default {
   name: 'App',
   components: {
     CellComponent,
     InscriptionName,
     Sidebar,
+    ButtonShowSidebar,
   },
   data() {
     return {
       mousePositionX: 0,
       mousePositionY: 0,
 
-      showSidebar: true,
+      showSidebar: false,
     }
   },
   computed: {
@@ -85,6 +94,9 @@ export default {
       this.mousePositionX = this.basicPositionX;
       this.mousePositionY = this.basicPositionY;
     },
+    showSidebarFunc(bool) {
+      this.showSidebar = bool;
+    }
   },
 }
 </script>
@@ -105,10 +117,11 @@ export default {
   overflow: hidden;
 }
 
-.padding-right {
+.padding_right {
   padding-right: 350px;
-  transition-duration: 0.2s;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  /*transition-duration: 0.5s;*/
+  transition: padding 0.3s;
+  /*transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);*/
 }
 
 .content {
@@ -118,5 +131,11 @@ export default {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+}
+
+.sidebar_button {
+  position: absolute;
+  right: 30px;
+  top: 10px;
 }
 </style>

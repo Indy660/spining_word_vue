@@ -80,6 +80,7 @@ export default {
   overflow: hidden;
   position: absolute;
   right: 0;
+  transition: width 0.3s;
   /*padding: 30px 15px;*/
   padding: 30px;
 }
