@@ -5,12 +5,6 @@
 <script>
 export default {
   name: "CellComponent",
-  props: {
-    index: {
-      type: Number,
-      default: 0,
-    }
-  },
 }
 </script>
 

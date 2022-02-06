@@ -6,7 +6,11 @@
       @mouseleave="returnDefaultIndex"
   >
     <template v-for="item in cellsAtScreen">
-      <CellComponent @click.native="showSidebarFunc(false)" @mouseenter.native="changeIndex(item)" :key="item"/>
+      <CellComponent
+          @click.native="showSidebarFunc(false)"
+          @mouseenter.native="changeIndex(item)"
+          :key="item"
+      />
     </template>
 
     <div class="content">
@@ -30,7 +34,11 @@
         @click.native.stop="showSidebarFunc(true)"
         v-if="!showSidebar"
     />
-    <Sidebar @click.stop v-if="showSidebar" @mouseleave="returnDefaultIndex"/>
+    <Sidebar
+        v-if="showSidebar"
+        @click.stop
+        @mouseleave="returnDefaultIndex"
+    />
 
   </div>
 </template>
@@ -120,7 +128,7 @@ export default {
 .padding_right {
   padding-right: 350px;
   /*transition-duration: 0.5s;*/
-  transition: padding 0.3s;
+  transition: padding 0.6s;
   /*transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);*/
 }
 
