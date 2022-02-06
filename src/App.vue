@@ -34,6 +34,9 @@
         @click.native.stop="showSidebarFunc(true)"
         v-if="!showSidebar"
     />
+<!--    v-if="showSidebar"-->
+<!--    :class="{'sidebar': showSidebar}"-->
+<!--    todo: Сделать плавный переход по ширине-->
     <Sidebar
         v-if="showSidebar"
         @click.stop
@@ -140,6 +143,10 @@ export default {
   align-items: center;
   overflow: hidden;
 }
+
+/*.sidebar {*/
+/*  width: 350px;*/
+/*}*/
 
 .sidebar_button {
   position: absolute;

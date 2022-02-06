@@ -35,12 +35,21 @@ export default {
   },
   data() {
     return {
+      // todo: Придумать еще свойства
       sidebarSettings: [
         {
           type: 'input',
           stateProp: ['settingInscription', 'inscription'],
           text: 'Надпись',
           action: 'updateInscriptionName',
+        },
+        {
+          type: 'range',
+          stateProp: ['mainScreen', 'timesInscription'],
+          text: 'Количество надписей',
+          min: 1,
+          max: 80,
+          action: 'updateTimesInscription',
         },
         {
           type: 'range',
@@ -58,14 +67,6 @@ export default {
           max: 100,
           action: 'updateRowsNumber',
         },
-        {
-          type: 'range',
-          stateProp: ['mainScreen', 'timesInscription'],
-          text: 'Количество надписей',
-          min: 1,
-          max: 80,
-          action: 'updateTimesInscription',
-        },
       ]
     }
   },
@@ -78,10 +79,10 @@ export default {
   background-color: white;
   height: 100vh;
   overflow: hidden;
-  position: absolute;
+  position: fixed;
+  /*position: absolute;*/
   right: 0;
   transition: width 1s;
-  /*padding: 30px 15px;*/
   padding: 30px;
 }
 

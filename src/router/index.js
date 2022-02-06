@@ -5,6 +5,7 @@ import App from "@/App";
 Vue.use(VueRouter)
 
 const routes = [
+    //todo: придумать сохранение путей
   {
     path: '/',
     name: 'home',
