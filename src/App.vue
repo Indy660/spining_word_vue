@@ -18,7 +18,7 @@
             :positionY="mousePositionY"
             :basicPositionX="basicPositionX"
             :basicPositionY="basicPositionY"
-            :order="item"
+            :order="item - 1"
             :timesInscription="timesInscription"
             :key="item"
         />

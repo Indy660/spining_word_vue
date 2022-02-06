@@ -25,7 +25,8 @@ export default {
         return this.stateProp.reduce((current, key) => current?.[key], path)
       },
       set (value) {
-        setTimeout(() => this.$store.commit(this.action, value), 300);
+        //todo: некоторые буквы пропадают
+        setTimeout(() => this.$store.commit(this.action, value), 100);
       }
     }
   },

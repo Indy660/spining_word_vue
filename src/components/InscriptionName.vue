@@ -60,7 +60,12 @@ export default {
     },
     startColor() {
       return this.stepColor * this.order;
-    }
+    },
+    //todo: Сделать ещё свойств
+    // extraOpacity() {
+    //   this.timesInscription
+    //   return this.order * 0.1
+    // },
   },
   mounted() {
     this.colorInscription = this.startColor;
