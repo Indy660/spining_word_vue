@@ -94,6 +94,7 @@ export default {
   },
   mounted() {
     this.returnDefaultIndex()
+    this.updateStateByUrl()
   },
   methods: {
     changeIndex(cellIndex) {
@@ -107,6 +108,29 @@ export default {
     },
     showSidebarFunc(bool) {
       this.showSidebar = bool;
+    },
+    updateStateByUrl() {
+      console.log(location.href.replace(location.origin, ''))
+      if (location.href.replace(location.origin, '').length > 1) {
+        const queryString = location.href.replace(location.origin, '').substring(1)
+        const path = queryString.split('&')
+        for (const itemPath of path) {
+          const indexBetween = itemPath.indexOf('=')
+          if (indexBetween) {
+            const keyPath = itemPath.substring(0, indexBetween)
+            let valuePath = itemPath.substring(indexBetween + 1)
+            if (parseInt(valuePath)) {
+              valuePath = parseInt(valuePath)
+            }
+            console.log(keyPath, valuePath)
+            // todo: приватное свойство, лучше изменить
+            console.log(this.$store._mutations)
+            if (this.$store._mutations[keyPath]) {
+              this.$store.commit(keyPath, valuePath)
+            }
+          }
+        }
+      }
     }
   },
 }

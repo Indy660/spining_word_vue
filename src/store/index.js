@@ -11,7 +11,7 @@ export default new Vuex.Store({
       columns: 20,
     },
     settingInscription: {
-      inscription: 'CSS',
+      inscription: 'SOMETHING',
     }
   },
   getters: {
