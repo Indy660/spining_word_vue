@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  //todo: придумать экспорт из хелпера
   state: {
     mainScreen: {
       timesInscription: 20,
@@ -11,7 +12,7 @@ export default new Vuex.Store({
       columns: 20,
     },
     settingInscription: {
-      inscription: 'SOMETHING',
+      inscription: 'EXAMPLE',
     }
   },
   getters: {

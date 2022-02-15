@@ -5,7 +5,7 @@ const defaultState = {
         columns: 20,
     },
     settingInscription: {
-        inscription: 'Надпись',
+        inscription: 'EXAMPLE',
     }
 }
 
