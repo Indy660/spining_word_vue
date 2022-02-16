@@ -51,6 +51,7 @@ import CellComponent from "@/components/CellComponent";
 import InscriptionName from "@/components/InscriptionName";
 import Sidebar from "@/components/sidebar/Sidebar";
 import ButtonShowSidebar from "@/components/ButtonShowSidebar";
+import { mapMutations, mapGetters } from "vuex"
 export default {
   name: 'App',
   components: {
@@ -68,9 +69,10 @@ export default {
     }
   },
   computed: {
-    rows() {
-      return this.$store.state.mainScreen.rows;
-    },
+    ...mapGetters(['rows']),
+    // rows() {
+    //   return this.$store.state.mainScreen.rows;
+    // },
     columns() {
       return this.$store.state.mainScreen.columns;
     },
@@ -97,6 +99,7 @@ export default {
     this.updateStateByUrl()
   },
   methods: {
+    ...mapMutations(['updateInscriptionName']),
     changeIndex(cellIndex) {
       this.mousePositionX = cellIndex > this.columns ? cellIndex % this.columns  === 0 ? this.columns : (cellIndex % this.columns) : cellIndex
       this.mousePositionY = cellIndex > this.columns ? Math.ceil(cellIndex / this.columns) : 1;
@@ -125,8 +128,11 @@ export default {
             console.log(keyPath, valuePath)
             // todo: приватное свойство, лучше изменить
             console.log(this.$store._mutations)
-            if (this.$store._mutations[keyPath]) {
-              this.$store.commit(keyPath, valuePath)
+            // if (this.$store._mutations[keyPath]) {
+            //   this.$store.commit(keyPath, valuePath)
+            // }
+            if (this[keyPath]) {
+              this[keyPath](valuePath)
             }
           }
         }

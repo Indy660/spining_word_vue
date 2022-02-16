@@ -1,5 +1,3 @@
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production'
-        ? '/spinning_word_vue/'
-        : '/'
+    publicPath: '/spinning_word_vue/'
 }

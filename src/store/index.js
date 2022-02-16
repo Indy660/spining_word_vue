@@ -20,7 +20,7 @@ export default new Vuex.Store({
       return state.timesInscription
     },
     rows(state) {
-      return state.rows
+      return state.mainScreen.rows
     },
     columns(state) {
       return state.columns
