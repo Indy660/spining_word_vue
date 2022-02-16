@@ -69,16 +69,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['rows']),
-    // rows() {
-    //   return this.$store.state.mainScreen.rows;
-    // },
-    columns() {
-      return this.$store.state.mainScreen.columns;
-    },
-    timesInscription() {
-      return this.$store.state.mainScreen.timesInscription;
-    },
+    ...mapGetters([
+      'timesInscription',
+      'rows',
+      'columns',
+      'inscription',
+    ]),
     cellsAtScreen() {
       return (this.rows * this.columns)
     },

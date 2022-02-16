@@ -17,16 +17,16 @@ export default new Vuex.Store({
   },
   getters: {
     timesInscription(state) {
-      return state.timesInscription
+      return state.mainScreen.timesInscription
     },
     rows(state) {
       return state.mainScreen.rows
     },
     columns(state) {
-      return state.columns
+      return state.mainScreen.columns
     },
     inscription(state) {
-      return state.inscription
+      return state.settingInscription.inscription
     },
   },
   mutations: {
