@@ -18,7 +18,6 @@ export default {
   width: 80px;
   height: 80px;
   overflow: hidden;
-  /*position: relative;*/
   cursor: pointer;
   margin: 15px;
   border-radius: 100%;
@@ -42,9 +41,7 @@ export default {
   height: 74px;
   border-radius: 100%;
   display: flex;
-  /*align-items: center;*/
-  /*justify-content: center;*/
-  filter: opacity(0.5) drop-shadow(0 0 0 green);
+  filter: opacity(0.4) drop-shadow(0 0 0 green);
 }
 
 .gradient, .gradient:after {

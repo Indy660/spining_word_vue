@@ -34,15 +34,11 @@
         @click.native.stop="showSidebarFunc(true)"
         v-if="!showSidebar"
     />
-<!--    v-if="showSidebar"-->
-<!--    :class="{'sidebar': showSidebar}"-->
-<!--    todo: Сделать плавный переход по ширине-->
     <Sidebar
-        v-if="showSidebar"
+        :showSidebar="showSidebar"
         @click.stop
         @mouseleave="returnDefaultIndex"
     />
-
   </div>
 </template>
 
@@ -95,7 +91,12 @@ export default {
     this.updateStateByUrl()
   },
   methods: {
-    ...mapMutations(['updateInscriptionName']),
+    ...mapMutations({
+      name: 'updateInscriptionName',
+      time_inscription: 'updateTimesInscription',
+      time_rows: 'updateRowsNumber',
+      time_columns: 'updateColumnsNumber',
+    }),
     changeIndex(cellIndex) {
       this.mousePositionX = cellIndex > this.columns ? cellIndex % this.columns  === 0 ? this.columns : (cellIndex % this.columns) : cellIndex
       this.mousePositionY = cellIndex > this.columns ? Math.ceil(cellIndex / this.columns) : 1;
@@ -121,12 +122,7 @@ export default {
             if (parseInt(valuePath)) {
               valuePath = parseInt(valuePath)
             }
-            console.log(keyPath, valuePath)
-            // todo: приватное свойство, лучше изменить
-            console.log(this.$store._mutations)
-            // if (this.$store._mutations[keyPath]) {
-            //   this.$store.commit(keyPath, valuePath)
-            // }
+            // console.log(keyPath, valuePath)
             if (this[keyPath]) {
               this[keyPath](valuePath)
             }
@@ -156,9 +152,7 @@ export default {
 
 .padding_right {
   padding-right: 350px;
-  /*transition-duration: 0.5s;*/
-  transition: padding 0.6s;
-  /*transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);*/
+  transition: padding 0.5s;
 }
 
 .content {
@@ -169,10 +163,6 @@ export default {
   align-items: center;
   overflow: hidden;
 }
-
-/*.sidebar {*/
-/*  width: 350px;*/
-/*}*/
 
 .sidebar_button {
   position: absolute;

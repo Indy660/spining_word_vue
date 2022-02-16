@@ -7,7 +7,7 @@
 </template>
 <script>
 export default {
-  name: 'simpleInput',
+  name: 'Input',
   props: {
     stateProp: {
       type: Array,
@@ -26,7 +26,8 @@ export default {
       },
       set (value) {
         //todo: некоторые буквы пропадают
-        setTimeout(() => this.$store.commit(this.action, value), 100);
+        // setTimeout(() => this.$store.commit(this.action, value), 100);
+        this.$store.commit(this.action, value)
       }
     }
   },

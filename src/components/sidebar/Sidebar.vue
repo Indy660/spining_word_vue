@@ -1,5 +1,5 @@
 <template>
- <div class="sidebar">
+ <div class="sidebar" :class="classSidebar">
    <template v-for="(item, key) in sidebarSettings">
      <div class="setting" :key="key">
        <div class="name_setting">
@@ -14,7 +14,7 @@
           />
         </template>
        <template v-else>
-         <SimpleInput
+         <Input
              :stateProp="item.stateProp"
              :action="item.action"
          />
@@ -25,13 +25,19 @@
 </template>
 
 <script>
-import SimpleInput from "@/components/sidebar/SimpleInput";
+import Input from "@/components/sidebar/Input";
 import Range from "@/components/sidebar/Range";
 export default {
   name: "Sidebar",
   components: {
-    SimpleInput,
+    Input,
     Range,
+  },
+  props: {
+    showSidebar: {
+      type: Boolean,
+      default: false,
+    }
   },
   data() {
     return {
@@ -70,20 +76,32 @@ export default {
       ]
     }
   },
+  computed: {
+   classSidebar() {
+      return this.showSidebar ? 'show' : 'hide'
+    }
+  }
 }
 </script>
 
 <style scoped>
 .sidebar {
-  width: 350px;
   background-color: white;
   height: 100vh;
   overflow: hidden;
   position: fixed;
-  /*position: absolute;*/
   right: 0;
-  transition: width 1s;
+  transition: width 0.5s;
+}
+
+.show {
+  width: 350px;
   padding: 30px;
+}
+
+.hide {
+  width: 0;
+  padding: 0;
 }
 
 .setting {

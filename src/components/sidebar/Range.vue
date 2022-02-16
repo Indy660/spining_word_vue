@@ -42,7 +42,8 @@
          return this.stateProp.reduce((current, key) => current?.[key], path)
        },
        set (value) {
-         setTimeout(() => this.$store.commit(this.action,  parseInt(value)), 300);
+         // setTimeout(() => this.$store.commit(this.action,  parseInt(value)), 300);
+        this.$store.commit(this.action,  parseInt(value));
        }
      }
    },
