@@ -46,7 +46,7 @@ export default {
         color: `hsl(${this.colorInscription}, 100%, 50%)`,
         fontSize: `calc(100px + ${this.order} * 10px)`,
         animationDelay: `calc(-0.3s + ${this.order}s)`,
-        opacity: `calc(0.1 +  ${this.order} * 0.1)`,
+        opacity: `${this.opacity}`,
         transform: `
          translateX(calc(-50% - (${this.positionX} - ${this.basicPositionX}) * (${this.basicPositionX} - ${this.order}) * 3px))
          translateY(calc(-50% - (${this.positionY} - ${this.basicPositionY}) * (${this.basicPositionY} - ${this.order}) * 3px))
@@ -62,10 +62,9 @@ export default {
       return this.stepColor * this.order;
     },
     //todo: Сделать ещё свойств
-    // extraOpacity() {
-    //   this.timesInscription
-    //   return this.order * 0.1
-    // },
+    opacity() {
+      return (this.order + 1)/this.timesInscription
+    },
   },
   mounted() {
     this.colorInscription = this.startColor;
