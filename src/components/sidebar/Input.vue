@@ -1,6 +1,4 @@
 <template>
-<!--  :value="model"-->
-<!--  @input="inputEmit"-->
   <input
     v-model="inputModel"
   />

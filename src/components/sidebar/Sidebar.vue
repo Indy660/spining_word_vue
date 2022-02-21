@@ -13,25 +13,33 @@
               :action="item.action"
           />
         </template>
-       <template v-else>
+       <template v-if="item.type === 'input'">
          <Input
              :stateProp="item.stateProp"
              :action="item.action"
          />
        </template>
+       <template v-if="item.type === 'button'">
+<!--         :stateProp="item.stateProp"-->
+<!--         :action="item.action"-->
+         <CopyButton/>
+       </template>
      </div>
    </template>
+<!--   <CopyButton/>-->
  </div>
 </template>
 
 <script>
 import Input from "@/components/sidebar/Input";
 import Range from "@/components/sidebar/Range";
+import CopyButton from "@/components/sidebar/CopyButton";
 export default {
   name: "Sidebar",
   components: {
     Input,
     Range,
+    CopyButton,
   },
   props: {
     showSidebar: {
@@ -73,6 +81,10 @@ export default {
           max: 100,
           action: 'updateRowsNumber',
         },
+        {
+          type: 'button',
+          // action: this.copyMethod
+        }
       ]
     }
   },
@@ -80,6 +92,15 @@ export default {
    classSidebar() {
       return this.showSidebar ? 'show' : 'hide'
     }
+  },
+  methods: {
+    // copyMethod() {
+    //   this.$refs.button.classList.add('copied');
+    //   const temp = setInterval(() => {
+    //     this.$refs.button.classList.remove('copied');
+    //     clearInterval(temp);
+    //   }, 600);
+    // },
   }
 }
 </script>

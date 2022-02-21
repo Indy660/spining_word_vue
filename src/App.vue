@@ -48,6 +48,7 @@ import InscriptionName from "@/components/InscriptionName";
 import Sidebar from "@/components/sidebar/Sidebar";
 import ButtonShowSidebar from "@/components/ButtonShowSidebar";
 import { mapMutations, mapGetters } from "vuex"
+import { URLMutationsNames, mapVuexObj } from  "@/helper/helper.js"
 export default {
   name: 'App',
   components: {
@@ -71,6 +72,9 @@ export default {
       'columns',
       'inscription',
     ]),
+    // ...mapGetters(
+    //     mapVuexObj(URLMutationsNames, 'getter')
+    // ),
     cellsAtScreen() {
       return (this.rows * this.columns)
     },
@@ -91,15 +95,19 @@ export default {
     this.updateStateByUrl()
   },
   methods: {
-    ...mapMutations({
-      name: 'updateInscriptionName',
-      time_inscription: 'updateTimesInscription',
-      time_rows: 'updateRowsNumber',
-      time_columns: 'updateColumnsNumber',
-    }),
+    // ...mapMutations({
+    //   name: 'updateInscriptionName',
+    //   time_inscription: 'updateTimesInscription',
+    //   time_rows: 'updateRowsNumber',
+    //   time_columns: 'updateColumnsNumber',
+    // }),
+    ...mapMutations(
+        mapVuexObj(URLMutationsNames, 'mutation')
+    ),
     changeIndex(cellIndex) {
       this.mousePositionX = cellIndex > this.columns ? cellIndex % this.columns  === 0 ? this.columns : (cellIndex % this.columns) : cellIndex
       this.mousePositionY = cellIndex > this.columns ? Math.ceil(cellIndex / this.columns) : 1;
+      // console.log(URLMutationsNames.map(item => ({[item.name]: item.mutation})),)
       // console.log(this.mousePositionX,  this.mousePositionY)
     },
     returnDefaultIndex() {
@@ -123,9 +131,12 @@ export default {
               valuePath = parseInt(valuePath)
             }
             // console.log(keyPath, valuePath)
-            if (this[keyPath]) {
-              this[keyPath](valuePath)
-            }
+            // for (const item of URLMutationsNames) {
+              if (this[keyPath]) {
+                this[keyPath](valuePath)
+              }
+            // }
+
           }
         }
       }
