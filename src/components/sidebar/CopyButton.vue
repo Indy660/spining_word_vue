@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// , mapMutations
 import {mapGetters} from "vuex"
 import {mapVuexObj, URLMutationsNames} from "@/helper/helper.js"
 export default {
@@ -21,6 +22,9 @@ export default {
     ),
   },
   methods: {
+    // ...mapMutations([
+    //     'setDefaultState'
+    // ]),
     copyMethod() {
       this.$refs.button.classList.add( 'copied' );
       const temp = setInterval(() => {
@@ -39,6 +43,8 @@ export default {
       }
       // eslint-enable-next-line no-constant-condition
       navigator.clipboard.writeText(newUrl)
+    //   console.log(122)
+    //   this.setDefaultState()
     },
   }
 }

@@ -50,7 +50,8 @@ import InscriptionName from "@/components/InscriptionName";
 import Sidebar from "@/components/sidebar/Sidebar";
 import ButtonShowSidebar from "@/components/ButtonShowSidebar";
 import { mapMutations, mapGetters } from "vuex"
-import { URLMutationsNames, mapVuexObj } from  "@/helper/helper.js"
+// returnGettersArray
+import {URLMutationsNames, mapVuexObj} from "@/helper/helper.js"
 export default {
   name: 'App',
   components: {
@@ -75,7 +76,7 @@ export default {
       'inscription',
     ]),
     // ...mapGetters(
-    //     mapVuexObj(URLMutationsNames, 'getter')
+    //     returnGettersArray
     // ),
     cellsAtScreen() {
       return (this.rows * this.columns)
@@ -132,7 +133,7 @@ export default {
             if (parseInt(valuePath)) {
               valuePath = parseInt(valuePath)
             }
-            // console.log(keyPath, valuePath)
+            console.log(keyPath, valuePath)
             // for (const item of URLMutationsNames) {
               if (this[keyPath]) {
                 this[keyPath](valuePath)

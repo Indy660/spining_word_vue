@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-
+import { defaultState } from "@/helper/helper.js"
 export default new Vuex.Store({
   //todo: придумать экспорт из хелпера
   state: {
@@ -41,6 +41,9 @@ export default new Vuex.Store({
     },
     updateInscriptionName(state, name) {
       state.settingInscription.inscription = name
+    },
+    setDefaultState(state) {
+       Object.assign(state, defaultState)
     }
   },
   actions: {

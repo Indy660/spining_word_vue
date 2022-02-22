@@ -64,4 +64,8 @@ function mapVuexObj(array, keyObj) {
     return result
 }
 
-export {defaultState, URLMutationsNames, mapVuexObj}
+function returnGettersArray() {
+    return URLMutationsNames.map(item => item.getter)
+}
+
+export {defaultState, URLMutationsNames, mapVuexObj, returnGettersArray}
