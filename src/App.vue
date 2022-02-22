@@ -29,11 +29,13 @@
       </template>
     </div>
 
-    <ButtonShowSidebar
-        class="sidebar_button"
-        @click.native.stop="showSidebarFunc(true)"
-        v-if="!showSidebar"
-    />
+    <transition name="fade">
+      <ButtonShowSidebar
+          class="sidebar_button"
+          @click.native.stop="showSidebarFunc(true)"
+          v-if="!showSidebar"
+      />
+    </transition>
     <Sidebar
         :showSidebar="showSidebar"
         @click.stop
@@ -179,5 +181,12 @@ export default {
   position: absolute;
   right: 30px;
   top: 10px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>
