@@ -19,14 +19,18 @@
              :action="item.action"
          />
        </template>
-       <template v-if="item.type === 'button'">
+       <template v-if="item.type === 'copy_button'">
 <!--         :stateProp="item.stateProp"-->
 <!--         :action="item.action"-->
          <CopyButton/>
        </template>
+       <template v-if="item.type === 'default_setting_button'">
+         <!--         :stateProp="item.stateProp"-->
+         <!--         :action="item.action"-->
+         <DefaultSettingsButton/>
+       </template>
      </div>
    </template>
-<!--   <CopyButton/>-->
  </div>
 </template>
 
@@ -34,12 +38,14 @@
 import Input from "@/components/sidebar/Input";
 import Range from "@/components/sidebar/Range";
 import CopyButton from "@/components/sidebar/CopyButton";
+import DefaultSettingsButton from "@/components/sidebar/DefaultSettingsButton";
 export default {
   name: "Sidebar",
   components: {
     Input,
     Range,
     CopyButton,
+    DefaultSettingsButton,
   },
   props: {
     showSidebar: {
@@ -82,7 +88,11 @@ export default {
           action: 'updateRowsNumber',
         },
         {
-          type: 'button',
+          type: 'copy_button',
+          // action: this.copyMethod
+        },
+        {
+          type: 'default_setting_button',
           // action: this.copyMethod
         }
       ]
