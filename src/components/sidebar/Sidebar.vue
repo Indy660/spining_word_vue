@@ -119,10 +119,18 @@ export default {
 .sidebar {
   background-color: white;
   height: 100vh;
-  overflow: hidden;
   position: fixed;
   right: 0;
   transition: width 0.5s;
+  overflow: auto;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #ADD8E6;
 }
 
 .show {

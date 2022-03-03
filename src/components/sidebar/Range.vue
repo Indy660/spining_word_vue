@@ -56,12 +56,7 @@
     display: block;
     width: 100%;
     margin: 16px 0;
-    background: #3e3e3f;
-    background-image: -webkit-gradient(linear, 20% 0%, 20% 100%, color-stop(0%, #ADD8E6), color-stop(100%, #ADD8E6));
-    background-image: -webkit-linear-gradient(left, #ADD8E6 0%,#ADD8E6 100%);
-    background-image: -moz-linear-gradient(left, #ADD8E6 0%, #ADD8E6 100%);
-    background-image: -o-linear-gradient(to right, #ADD8E6 0%,#ADD8E6 100%);
-    background-image: linear-gradient(to right, #ADD8E6 0%,#ADD8E6 100%);
+    background-image: linear-gradient(to right, #ADD8E6 0%,#00c0ff 100%);
     background-repeat: no-repeat;
   }
   input[type=range]:focus {
