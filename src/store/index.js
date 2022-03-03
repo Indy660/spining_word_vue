@@ -2,9 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-import { defaultState } from "@/helper/helper.js"
+// defaultState,
+import { getDefaultStateClone } from "@/helper/helper.js"
 export default new Vuex.Store({
   //todo: придумать экспорт из хелпера
+  // state: defaultState, - не работает возвращение
   state: {
     mainScreen: {
       timesInscription: 20,
@@ -43,7 +45,7 @@ export default new Vuex.Store({
       state.settingInscription.inscription = name
     },
     setDefaultState(state) {
-       Object.assign(state, defaultState)
+      Object.assign(state, getDefaultStateClone())
     }
   },
   actions: {
