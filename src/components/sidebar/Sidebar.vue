@@ -19,6 +19,14 @@
              :action="item.action"
          />
        </template>
+       <template v-if="item.type === 'double_range'">
+         <!--         :stateProp="item.stateProp"-->
+         <!--         :action="item.action"-->
+         <DoubleRange
+             :minNum="item.min"
+             :maxNum="item.max"
+         />
+       </template>
        <template v-if="item.type === 'copy_button'">
 <!--         :stateProp="item.stateProp"-->
 <!--         :action="item.action"-->
@@ -39,6 +47,8 @@ import Input from "@/components/sidebar/Input";
 import Range from "@/components/sidebar/Range";
 import CopyButton from "@/components/sidebar/CopyButton";
 import DefaultSettingsButton from "@/components/sidebar/DefaultSettingsButton";
+import DoubleRange from "@/components/sidebar/DoubleRange";
+
 export default {
   name: "Sidebar",
   components: {
@@ -46,6 +56,7 @@ export default {
     Range,
     CopyButton,
     DefaultSettingsButton,
+    DoubleRange,
   },
   props: {
     showSidebar: {
@@ -86,6 +97,14 @@ export default {
           min: 5,
           max: 100,
           action: 'updateRowsNumber',
+        },
+        {
+          type: 'double_range',
+          // stateProp: ['mainScreen', 'rows'],
+          text: 'Ограничение цветов',
+          min: 1,
+          max: 359,
+          // action: 'updateRowsNumber',
         },
         {
           type: 'copy_button',
