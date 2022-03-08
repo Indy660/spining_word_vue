@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-// defaultState,
+// import { getDefaultStateClone, defaultState } from "@/helper/helper.js"
 import { getDefaultStateClone } from "@/helper/helper.js"
 export default new Vuex.Store({
   //todo: придумать экспорт из хелпера
@@ -12,6 +12,10 @@ export default new Vuex.Store({
       timesInscription: 20,
       rows: 20,
       columns: 20,
+      color: {
+        saturation: 100,
+        lightness : 50,
+      },
     },
     settingInscription: {
       inscription: 'EXAMPLE',
@@ -27,21 +31,33 @@ export default new Vuex.Store({
     columns(state) {
       return state.mainScreen.columns
     },
+    saturationState(state) {
+      return state.mainScreen.color.saturation
+    },
+    lightnessState(state) {
+      return state.mainScreen.color.lightness
+    },
     inscription(state) {
       return state.settingInscription.inscription
     },
   },
   mutations: {
-    updateTimesInscription(state, number) {
+    setTimesInscription(state, number) {
       state.mainScreen.timesInscription = number
     },
-    updateRowsNumber(state, number) {
+    setRowsNumber(state, number) {
       state.mainScreen.rows = number
     },
-    updateColumnsNumber(state, number) {
+    setColumnsNumber(state, number) {
       state.mainScreen.columns = number
     },
-    updateInscriptionName(state, name) {
+    setSaturation(state, saturation) {
+      state.mainScreen.color.saturation = saturation
+    },
+    setLightness(state, lightness) {
+      state.mainScreen.color.lightness = lightness
+    },
+    setInscriptionName(state, name) {
       state.settingInscription.inscription = name
     },
     setDefaultState(state) {

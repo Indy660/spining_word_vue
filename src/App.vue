@@ -14,8 +14,6 @@
     </template>
 
     <div class="content">
-<!--      @click="$log(item)"-->
-<!--      :ref="'inscription_' + item"-->
       <template v-for="item in timesInscription">
         <InscriptionName
             :positionX="mousePositionX"
@@ -23,7 +21,6 @@
             :basicPositionX="basicPositionX"
             :basicPositionY="basicPositionY"
             :order="item - 1"
-            :timesInscription="timesInscription"
             :key="item"
         />
       </template>
@@ -50,8 +47,7 @@ import InscriptionName from "@/components/InscriptionName";
 import Sidebar from "@/components/sidebar/Sidebar";
 import ButtonShowSidebar from "@/components/ButtonShowSidebar";
 import { mapMutations, mapGetters } from "vuex"
-// returnGettersArray
-import {URLMutationsNames, mapVuexObj} from "@/helper/helper.js"
+import {URLMutationsNames, mapVuexObj, returnGettersArray} from "@/helper/helper.js"
 export default {
   name: 'App',
   components: {
@@ -69,15 +65,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'timesInscription',
-      'rows',
-      'columns',
-      'inscription',
-    ]),
-    // ...mapGetters(
-    //     returnGettersArray
-    // ),
+    ...mapGetters(
+        returnGettersArray()
+    ),
     cellsAtScreen() {
       return (this.rows * this.columns)
     },
@@ -99,10 +89,10 @@ export default {
   },
   methods: {
     // ...mapMutations({
-    //   name: 'updateInscriptionName',
-    //   time_inscription: 'updateTimesInscription',
-    //   time_rows: 'updateRowsNumber',
-    //   time_columns: 'updateColumnsNumber',
+    //   name: 'setInscriptionName',
+    //   time_inscription: 'setTimesInscription',
+    //   time_rows: 'setRowsNumber',
+    //   time_columns: 'setColumnsNumber',
     // }),
     ...mapMutations(
         mapVuexObj(URLMutationsNames, 'mutation')
@@ -110,7 +100,6 @@ export default {
     changeIndex(cellIndex) {
       this.mousePositionX = cellIndex > this.columns ? cellIndex % this.columns  === 0 ? this.columns : (cellIndex % this.columns) : cellIndex
       this.mousePositionY = cellIndex > this.columns ? Math.ceil(cellIndex / this.columns) : 1;
-      // console.log(URLMutationsNames.map(item => ({[item.name]: item.mutation})),)
       // console.log(this.mousePositionX,  this.mousePositionY)
     },
     returnDefaultIndex() {

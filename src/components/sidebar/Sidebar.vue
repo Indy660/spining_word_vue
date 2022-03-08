@@ -72,7 +72,7 @@ export default {
           type: 'input',
           stateProp: ['settingInscription', 'inscription'],
           text: 'Надпись',
-          action: 'updateInscriptionName',
+          action: 'setInscriptionName',
         },
         {
           type: 'range',
@@ -80,7 +80,7 @@ export default {
           text: 'Количество надписей',
           min: 1,
           max: 80,
-          action: 'updateTimesInscription',
+          action: 'setTimesInscription',
         },
         {
           type: 'range',
@@ -88,7 +88,7 @@ export default {
           text: 'Количество колонн',
           min: 5,
           max: 100,
-          action: 'updateColumnsNumber',
+          action: 'setColumnsNumber',
         },
         {
           type: 'range',
@@ -96,15 +96,34 @@ export default {
           text: 'Количество рядов',
           min: 5,
           max: 100,
-          action: 'updateRowsNumber',
+          action: 'setRowsNumber',
+        },
+        // {
+        //   type: 'range',
+        //   // type: 'double_range',
+        //   // stateProp: ['mainScreen', 'rows'],
+        //   text: 'Ограничение цветов HSL (H)',
+        //   min: 1,
+        //   max: 360,
+        //   // action: 'setRowsNumber',
+        // },
+        {
+          type: 'range',
+          // type: 'double_range',
+          stateProp: ['mainScreen', 'color', 'saturation'],
+          text: 'Ограничение цветов HSL (S)',
+          min: 1,
+          max: 100,
+          action: 'setSaturation',
         },
         {
-          type: 'double_range',
-          // stateProp: ['mainScreen', 'rows'],
-          text: 'Ограничение цветов',
+          type: 'range',
+          // type: 'double_range',
+          stateProp: ['mainScreen', 'color', 'lightness'],
+          text: 'Ограничение цветов HSL (L)',
           min: 1,
-          max: 359,
-          // action: 'updateRowsNumber',
+          max: 100,
+          action: 'setLightness',
         },
         {
           type: 'copy_button',
@@ -122,15 +141,6 @@ export default {
       return this.showSidebar ? 'show' : 'hide'
     }
   },
-  methods: {
-    // copyMethod() {
-    //   this.$refs.button.classList.add('copied');
-    //   const temp = setInterval(() => {
-    //     this.$refs.button.classList.remove('copied');
-    //     clearInterval(temp);
-    //   }, 600);
-    // },
-  }
 }
 </script>
 

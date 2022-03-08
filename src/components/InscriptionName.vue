@@ -3,14 +3,12 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
+import { returnGettersArray} from "@/helper/helper.js"
 export default {
   name: "InscriptionName",
   props: {
     order: {
-      type: Number,
-      default: 1,
-    },
-    timesInscription: {
       type: Number,
       default: 1,
     },
@@ -37,13 +35,12 @@ export default {
     }
   },
   computed: {
-    inscription() {
-      return this.$store.state.settingInscription.inscription
-    },
+    ...mapGetters(
+        returnGettersArray()
+    ),
     computedStyle() {
       return {
-        // color:  `hsl(calc(36 * ${this.order}), 75%, 75%)`,
-        color: `hsl(${this.colorInscription}, 100%, 50%)`,
+        color: `hsl(${this.colorInscription}, ${this.saturationState}%, ${this.lightnessState}%)`,
         fontSize: `calc(100px + ${this.order} * 10px)`,
         animationDelay: `calc(-0.3s + ${this.order}s)`,
         opacity: `${this.opacity}`,

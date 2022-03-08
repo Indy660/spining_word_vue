@@ -3,6 +3,10 @@ const defaultState = {
         timesInscription: 20,
         rows: 20,
         columns: 20,
+        color: {
+            saturation: 100,
+            lightness : 50,
+        },
     },
     settingInscription: {
         inscription: 'EXAMPLE',
@@ -31,50 +35,40 @@ function getDefaultStateClone() {
 }
 
 const URLMutationsNames = [
-    // name: {
-    //     name: 'name',
-    //     mutation: 'updateInscriptionName',
-    //     getter: 'inscription'
-    // },
-    // time_inscription: {
-    //     name: 'time_inscription',
-    //     mutation: 'updateTimesInscription',
-    //     getter: 'timesInscription'
-    // },
-    // time_rows: {
-    //     name: 'time_rows',
-    //     mutation: 'updateRowsNumber',
-    //     getter: 'rows'
-    // },
-    // time_columns: {
-    //     name: 'time_columns',
-    //     mutation: 'updateColumnsNumber',
-    //     getter: 'columns'
-    // }
     {
         name: 'name',
-        mutation: 'updateInscriptionName',
+        mutation: 'setInscriptionName',
         getter: 'inscription'
     },
     {
         name: 'time_inscription',
-        mutation: 'updateTimesInscription',
+        mutation: 'setTimesInscription',
         getter: 'timesInscription'
     },
     {
         name: 'time_rows',
-        mutation: 'updateRowsNumber',
+        mutation: 'setRowsNumber',
         getter: 'rows'
     },
     {
         name: 'time_columns',
-        mutation: 'updateColumnsNumber',
+        mutation: 'setColumnsNumber',
         getter: 'columns'
     },
-// name: 'updateInscriptionName'
-// time_inscription: 'updateTimesInscription',
-// time_rows: 'updateRowsNumber',
-// time_columns: 'updateColumnsNumber',
+    {
+        name: 'saturation',
+        mutation: 'setSaturation',
+        getter: 'saturationState'
+    },
+    {
+        name: 'lightness',
+        mutation: 'setLightness',
+        getter: 'lightnessState'
+    },
+// name: 'setInscriptionName'
+// time_inscription: 'setTimesInscription',
+// time_rows: 'setRowsNumber',
+// time_columns: 'setColumnsNumber',
 ];
 
 function mapVuexObj(array, keyObj) {
