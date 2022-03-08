@@ -3,13 +3,18 @@ const defaultState = {
         timesInscription: 20,
         rows: 20,
         columns: 20,
-        color: {
-            saturation: 100,
-            lightness : 50,
-        },
     },
     settingInscription: {
         inscription: 'EXAMPLE',
+        color: {
+            hue: {
+                start: 1,
+                end: 360,
+            },
+            saturation: 100,
+            lightness : 50,
+        },
+        speedUpdateColor: 200,
     }
 };
 
@@ -56,6 +61,11 @@ const URLMutationsNames = [
         getter: 'columns'
     },
     {
+        name: 'hue',
+        mutation: 'setHue',
+        getter: 'hueState'
+    },
+    {
         name: 'saturation',
         mutation: 'setSaturation',
         getter: 'saturationState'
@@ -65,10 +75,11 @@ const URLMutationsNames = [
         mutation: 'setLightness',
         getter: 'lightnessState'
     },
-// name: 'setInscriptionName'
-// time_inscription: 'setTimesInscription',
-// time_rows: 'setRowsNumber',
-// time_columns: 'setColumnsNumber',
+    {
+        name: 'speedUpdateColor',
+        mutation: 'setSpeedUpdateColor',
+        getter: 'speedUpdateColorState'
+    },
 ];
 
 function mapVuexObj(array, keyObj) {

@@ -4,7 +4,7 @@
 
 <script>
 import { mapGetters } from "vuex"
-import { returnGettersArray} from "@/helper/helper.js"
+import { returnGettersArray } from "@/helper/helper.js"
 export default {
   name: "InscriptionName",
   props: {
@@ -60,20 +60,24 @@ export default {
     },
     //todo: Сделать ещё свойств
     opacity() {
-      return (this.order + 1)/this.timesInscription
+      return (this.order + 1) / this.timesInscription
     },
   },
   mounted() {
     this.colorInscription = this.startColor;
     this.updateColor()
+    // this.speedUpdateColorState
     setInterval(() => this.updateColor(), 200)
   },
   methods: {
     updateColor() {
+      // setInterval(() => {
       this.colorInscription = this.colorInscription + this.stepColor
-      if (this.colorInscription / 360 >= 1) {
-        this.colorInscription = 0
+      if (this.colorInscription / this.hueState.end >= 1) {
+        console.log(this.speedUpdateColorState, 111)
+        this.colorInscription = this.hueState.start
       }
+      // }}, this.speedUpdateColorState)
     }
   },
 }

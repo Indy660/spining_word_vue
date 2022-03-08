@@ -5,26 +5,19 @@
 </template>
 
 <script>
-// , mapMutations
-import {mapGetters} from "vuex"
-import {mapVuexObj, URLMutationsNames} from "@/helper/helper.js"
+import {mapGetters, mapMutations} from "vuex"
+import {mapVuexObj, URLMutationsNames, } from "@/helper/helper.js"
 export default {
   name: "CopyButton",
-  // props: {
-  //   action: {
-  //     type: Function,
-  //     default: () => {}
-  //   }
-  // },
   computed: {
     ...mapGetters(
         mapVuexObj(URLMutationsNames, 'getter')
     ),
   },
   methods: {
-    // ...mapMutations([
-    //     'setDefaultState'
-    // ]),
+    ...mapMutations([
+        'setDefaultState'
+    ]),
     copyMethod() {
       this.$refs.button.classList.add( 'copied' );
       const temp = setInterval(() => {
@@ -33,6 +26,7 @@ export default {
       }, 600 );
       let newUrl = `${location.origin}/`;
       //todo: придумать проверку сравнения со стандартным условиями, убрать глупую проверку
+      // todo: копирование начала и конца цвета
       // eslint-disable-next-line no-constant-condition
       if (1 === 1) {
         for (const item of URLMutationsNames) {
@@ -43,8 +37,6 @@ export default {
       }
       // eslint-enable-next-line no-constant-condition
       navigator.clipboard.writeText(newUrl)
-    //   console.log(122)
-    //   this.setDefaultState()
     },
   }
 }

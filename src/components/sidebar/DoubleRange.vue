@@ -4,6 +4,15 @@
     <input type="number" :min="minNum" :max="maxNum" step="1" v-model="sliderMin">
     <input type="range" :min="minNum" :max="maxNum" v-model="sliderMax">
     <input type="number" :min="minNum" :max="maxNum" step="1" v-model="sliderMax">
+    <div class="colors">
+      <div style="background-color: red" class="half-width"></div>
+      <div style="background-color: yellow" class="full-width"></div>
+      <div style="background-color: green" class="full-width"></div>
+      <div style="background-color: aqua" class="full-width"></div>
+      <div style="background-color: blue" class="full-width"></div>
+      <div style="background-color: purple" class="full-width"></div>
+      <div style="background-color: red" class="half-width"></div>
+    </div>
   </div>
 </template>
 
@@ -13,23 +22,32 @@ export default {
   props: {
     minNum: {
       type: Number,
-      default: 0,
+      default: 1,
     },
     maxNum: {
       type: Number,
-      default: 1,
+      default: 360,
+    },
+    stateProp: {
+      type: Array,
+      default: () => [],
+    },
+    action: {
+      type: String,
+      default: ''
     },
   },
   data() {
     return {
-      minAngle: 10,
-      maxAngle: 30,
+      minAngle: null,
+      maxAngle: null,
     }
   },
   computed: {
     sliderMin: {
       get() {
-        return parseInt(this.minAngle);
+        let path = this.$store.state
+        return this.stateProp.reduce((current, key) => current?.[key], path).start
       },
       set(val) {
         val = parseInt(val);
@@ -37,11 +55,15 @@ export default {
           this.maxAngle = val;
         }
         this.minAngle = val;
+        this.$store.commit(this.action,
+            {start: this.minAngle, end: this.maxAngle}
+        );
       }
     },
     sliderMax: {
       get() {
-        return parseInt(this.maxAngle);
+        let path = this.$store.state
+        return this.stateProp.reduce((current, key) => current?.[key], path).end
       },
       set(val) {
         val = parseInt(val);
@@ -49,6 +71,9 @@ export default {
           this.minAngle = val;
         }
         this.maxAngle = val;
+        this.$store.commit(this.action,
+            {start: this.minAngle, end: this.maxAngle}
+        );
       }
     }
   },
@@ -69,6 +94,21 @@ export default {
   height: 60px;
 }
 
+.range-slider .colors {
+  height: 30px;
+  width: 100%;
+  display: flex;
+  margin-top: 15px;
+}
+
+.range-slider .colors .full-width {
+  flex: 1 1 0;
+}
+
+.range-slider .colors .half-width {
+  flex: 0.5 1 0;
+}
+
 .range-slider input[type=range] {
   position: absolute;
   left: 0;
@@ -79,7 +119,6 @@ input[type=number] {
   border: 1px solid #ddd;
   text-align: center;
   font-size: 20px;
-  -moz-appearance: textfield;
 }
 
 input[type=range] {
@@ -106,7 +145,6 @@ input[type=range]::-webkit-slider-thumb {
   border-radius: 25px;
   background: #a1d0ff;
   cursor: pointer;
-  -webkit-appearance: none;
   margin-top: -7px;
 }
 

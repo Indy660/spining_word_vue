@@ -25,6 +25,8 @@
          <DoubleRange
              :minNum="item.min"
              :maxNum="item.max"
+             :stateProp="item.stateProp"
+             :action="item.action"
          />
        </template>
        <template v-if="item.type === 'copy_button'">
@@ -98,29 +100,35 @@ export default {
           max: 100,
           action: 'setRowsNumber',
         },
+        // todo: обдумать обновление цвета
         // {
         //   type: 'range',
-        //   // type: 'double_range',
-        //   // stateProp: ['mainScreen', 'rows'],
-        //   text: 'Ограничение цветов HSL (H)',
-        //   min: 1,
-        //   max: 360,
-        //   // action: 'setRowsNumber',
+        //   stateProp: ['settingInscription', 'speedUpdateColor'],
+        //   text: 'Обновление цвета в мс',
+        //   min: 10,
+        //   max: 1000,
+        //   action: 'setSpeedUpdateColor',
         // },
         {
+          type: 'double_range',
+          stateProp: ['settingInscription', 'color', 'hue'],
+          text: 'Ограничение цветов HSL (H)',
+          min: 1,
+          max: 360,
+          action: 'setHue',
+        },
+        {
           type: 'range',
-          // type: 'double_range',
-          stateProp: ['mainScreen', 'color', 'saturation'],
-          text: 'Ограничение цветов HSL (S)',
+          stateProp: ['settingInscription', 'color', 'saturation'],
+          text: 'Настройки цветов HSL (S)',
           min: 1,
           max: 100,
           action: 'setSaturation',
         },
         {
           type: 'range',
-          // type: 'double_range',
-          stateProp: ['mainScreen', 'color', 'lightness'],
-          text: 'Ограничение цветов HSL (L)',
+          stateProp: ['settingInscription', 'color', 'lightness'],
+          text: 'Настройки цветов HSL (L)',
           min: 1,
           max: 100,
           action: 'setLightness',
@@ -179,6 +187,7 @@ export default {
 .name_setting {
   display: flex;
   justify-content: center;
+  text-align: center;
   width: 80%;
   font-size: 20px;
   margin-bottom: 20px;
