@@ -47,7 +47,7 @@ import InscriptionName from "@/components/InscriptionName";
 import Sidebar from "@/components/sidebar/Sidebar";
 import ButtonShowSidebar from "@/components/ButtonShowSidebar";
 import { mapMutations, mapGetters } from "vuex"
-import {URLMutationsNames, mapVuexObj, returnGettersArray} from "@/helper/helper.js"
+import {URLMutationsNames, mapVuexObj, returnGettersArray, projectName} from "@/helper/helper.js"
 export default {
   name: 'App',
   components: {
@@ -110,9 +110,13 @@ export default {
       this.showSidebar = bool;
     },
     updateStateByUrl() {
-      console.log(location.href.replace(location.origin, ''))
-      if (location.href.replace(location.origin, '').length > 1) {
-        const queryString = location.href.replace(location.origin, '').substring(1)
+      let queryString = location.href.replace(location.origin, '').substring(1)
+      console.log('queryString', queryString)
+      if (queryString.indexOf(projectName) >= 0) {
+        queryString = queryString.replace(projectName, '')
+        queryString = queryString.substring(1)
+      }
+      if (queryString.length > 1) {
         const path = queryString.split('&')
         for (const itemPath of path) {
           const indexBetween = itemPath.indexOf('=')
@@ -128,7 +132,6 @@ export default {
                 this[keyPath](valuePath)
               }
             // }
-
           }
         }
       }

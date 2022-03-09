@@ -1,3 +1,5 @@
+const projectName = 'spinning_word_vue'
+
 const defaultState = {
     mainScreen: {
         timesInscription: 20,
@@ -94,4 +96,4 @@ function returnGettersArray() {
     return URLMutationsNames.map(item => item.getter)
 }
 
-export {defaultState, URLMutationsNames, mapVuexObj, returnGettersArray, getDefaultStateClone}
+export {defaultState, URLMutationsNames, mapVuexObj, returnGettersArray, getDefaultStateClone, projectName}
