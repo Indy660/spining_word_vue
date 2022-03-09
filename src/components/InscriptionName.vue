@@ -1,5 +1,5 @@
 <template>
-  <div class="name" :style="computedStyle">{{ inscription }}</div>
+  <div class="name" :style="computedStyle">{{ getInscription }}</div>
 </template>
 
 <script>
@@ -41,8 +41,8 @@ export default {
     ),
     computedStyle() {
       return {
-        color: `hsl(${this.colorInscription}, ${this.saturationState}%, ${this.lightnessState}%)`,
-        fontSize: `calc(100px + ${this.order} * 10px)`,
+        color: `hsl(${this.colorInscription}, ${this.getSaturation}%, ${this.getLightness}%)`,
+        fontSize: `calc(${this.getInitialFontSize}px + ${this.order} * 10px)`,
         animationDelay: `calc(-0.3s + ${this.order}s)`,
         opacity: `${this.opacity}`,
         transform: `
@@ -54,13 +54,13 @@ export default {
       }
     },
     stepColor() {
-      return Math.ceil(360  / this.timesInscription);
+      return Math.ceil(360  / this.getTimesInscription);
     },
     startColor() {
       return this.stepColor * this.order;
     },
     opacity() {
-      return (this.order + 1) / this.timesInscription
+      return (this.order + 1) / this.getTimesInscription
     },
   },
   mounted() {
@@ -71,10 +71,10 @@ export default {
     updateColor() {
       this.timerId = setInterval(() => {
       this.colorInscription = this.colorInscription + this.stepColor
-      if (this.colorInscription / this.hueState.end >= 1) {
-        this.colorInscription = this.hueState.start
+      if (this.colorInscription / this.getHue.end >= 1) {
+        this.colorInscription = this.getHue.start
       }
-      }, this.speedUpdateColorState)
+      }, this.getSpeedUpdateColor)
     },
     updateColorStartFunc() {
       clearInterval(this.timerId)
@@ -82,9 +82,9 @@ export default {
     },
   },
   watch: {
-    speedUpdateColorState: {
+    getSpeedUpdateColor: {
       handler() {
-        this.updateColorFunc()
+        this.updateColorStartFunc()
       }
     }
   },

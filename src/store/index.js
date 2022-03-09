@@ -23,33 +23,37 @@ export default new Vuex.Store({
         saturation: 100,
         lightness: 50,
       },
+      initialFontSize: 100,
       speedUpdateColor: 200,
     }
   },
   getters: {
-    timesInscription(state) {
+    getTimesInscription(state) {
       return state.mainScreen.timesInscription
     },
-    rows(state) {
+    getRows(state) {
       return state.mainScreen.rows
     },
-    columns(state) {
+    getColumns(state) {
       return state.mainScreen.columns
     },
-    inscription(state) {
+    getInscription(state) {
       return state.settingInscription.inscription
     },
-    hueState(state) {
+    getHue(state) {
       return state.settingInscription.color.hue
     },
-    saturationState(state) {
+    getSaturation(state) {
       return state.settingInscription.color.saturation
     },
-    lightnessState(state) {
+    getLightness(state) {
       return state.settingInscription.color.lightness
     },
-    speedUpdateColorState(state) {
+    getSpeedUpdateColor(state) {
       return state.settingInscription.speedUpdateColor
+    },
+    getInitialFontSize(state) {
+      return state.settingInscription.initialFontSize
     },
   },
   mutations: {
@@ -76,6 +80,9 @@ export default new Vuex.Store({
     },
     setSpeedUpdateColor(state, speed) {
       state.settingInscription.speedUpdateColor = speed
+    },
+    setInitialFontSize(state, fontSize) {
+      state.settingInscription.initialFontSize = fontSize
     },
     setDefaultState(state) {
       Object.assign(state, getDefaultStateClone())

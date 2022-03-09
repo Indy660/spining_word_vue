@@ -102,8 +102,16 @@ export default {
         },
         {
           type: 'range',
+          stateProp: ['settingInscription', 'initialFontSize'],
+          text: 'Начальный размер текста (px)',
+          min: 10,
+          max: 300,
+          action: 'setInitialFontSize',
+        },
+        {
+          type: 'range',
           stateProp: ['settingInscription', 'speedUpdateColor'],
-          text: 'Обновление цвета в мс',
+          text: 'Обновление цвета (мс)',
           min: 10,
           max: 1000,
           action: 'setSpeedUpdateColor',

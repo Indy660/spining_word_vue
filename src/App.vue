@@ -14,7 +14,7 @@
     </template>
 
     <div class="content">
-      <template v-for="item in timesInscription">
+      <template v-for="item in getTimesInscription">
         <InscriptionName
             :positionX="mousePositionX"
             :positionY="mousePositionY"
@@ -69,18 +69,18 @@ export default {
         returnGettersArray()
     ),
     cellsAtScreen() {
-      return (this.rows * this.columns)
+      return (this.getRows * this.getColumns)
     },
     mainGridStyle() {
       return {
-        gridTemplate: `repeat(${this.rows}, 1fr) / repeat(${this.columns}, 1fr)`
+        gridTemplate: `repeat(${this.getRows}, 1fr) / repeat(${this.getColumns}, 1fr)`
       }
     },
     basicPositionX() {
-      return Math.ceil(this.columns / 2)
+      return Math.ceil(this.getColumns / 2)
     },
     basicPositionY() {
-      return Math.ceil(this.rows / 2)
+      return Math.ceil(this.getRows / 2)
     },
   },
   mounted() {
@@ -98,8 +98,8 @@ export default {
         mapVuexObj(URLMutationsNames, 'mutation')
     ),
     changeIndex(cellIndex) {
-      this.mousePositionX = cellIndex > this.columns ? cellIndex % this.columns  === 0 ? this.columns : (cellIndex % this.columns) : cellIndex
-      this.mousePositionY = cellIndex > this.columns ? Math.ceil(cellIndex / this.columns) : 1;
+      this.mousePositionX = cellIndex > this.getColumns ? cellIndex % this.getColumns  === 0 ? this.getColumns : (cellIndex % this.getColumns) : cellIndex
+      this.mousePositionY = cellIndex > this.getColumns ? Math.ceil(cellIndex / this.getColumns) : 1;
       // console.log(this.mousePositionX,  this.mousePositionY)
     },
     returnDefaultIndex() {

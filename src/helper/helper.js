@@ -16,6 +16,7 @@ const defaultState = {
             saturation: 100,
             lightness : 50,
         },
+        initialFontSize: 100,
         speedUpdateColor: 200,
     }
 };
@@ -45,42 +46,47 @@ const URLMutationsNames = [
     {
         name: 'name',
         mutation: 'setInscriptionName',
-        getter: 'inscription'
+        getter: 'getInscription'
     },
     {
         name: 'time_inscription',
         mutation: 'setTimesInscription',
-        getter: 'timesInscription'
+        getter: 'getTimesInscription'
     },
     {
         name: 'time_rows',
         mutation: 'setRowsNumber',
-        getter: 'rows'
+        getter: 'getRows'
     },
     {
         name: 'time_columns',
         mutation: 'setColumnsNumber',
-        getter: 'columns'
+        getter: 'getColumns'
     },
     {
         name: 'hue',
         mutation: 'setHue',
-        getter: 'hueState'
+        getter: 'getHue'
     },
     {
         name: 'saturation',
         mutation: 'setSaturation',
-        getter: 'saturationState'
+        getter: 'getSaturation'
     },
     {
         name: 'lightness',
         mutation: 'setLightness',
-        getter: 'lightnessState'
+        getter: 'getLightness'
     },
     {
         name: 'speedUpdateColor',
         mutation: 'setSpeedUpdateColor',
-        getter: 'speedUpdateColorState'
+        getter: 'getSpeedUpdateColor'
+    },
+    {
+        name: 'initial_font_size',
+        mutation: 'setInitialFontSize',
+        getter: 'getInitialFontSize'
     },
 ];
 
