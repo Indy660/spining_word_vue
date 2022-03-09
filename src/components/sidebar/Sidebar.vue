@@ -100,15 +100,14 @@ export default {
           max: 100,
           action: 'setRowsNumber',
         },
-        // todo: обдумать обновление цвета
-        // {
-        //   type: 'range',
-        //   stateProp: ['settingInscription', 'speedUpdateColor'],
-        //   text: 'Обновление цвета в мс',
-        //   min: 10,
-        //   max: 1000,
-        //   action: 'setSpeedUpdateColor',
-        // },
+        {
+          type: 'range',
+          stateProp: ['settingInscription', 'speedUpdateColor'],
+          text: 'Обновление цвета в мс',
+          min: 10,
+          max: 1000,
+          action: 'setSpeedUpdateColor',
+        },
         {
           type: 'double_range',
           stateProp: ['settingInscription', 'color', 'hue'],

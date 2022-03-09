@@ -32,6 +32,7 @@ export default {
   data() {
     return {
       colorInscription: 0,
+      timerId: null,
     }
   },
   computed: {
@@ -58,26 +59,33 @@ export default {
     startColor() {
       return this.stepColor * this.order;
     },
-    //todo: Сделать ещё свойств
     opacity() {
       return (this.order + 1) / this.timesInscription
     },
   },
   mounted() {
     this.colorInscription = this.startColor;
-    this.updateColor()
-    // this.speedUpdateColorState
-    setInterval(() => this.updateColor(), 200)
+    this.updateColorStartFunc()
   },
   methods: {
     updateColor() {
-      // setInterval(() => {
+      this.timerId = setInterval(() => {
       this.colorInscription = this.colorInscription + this.stepColor
       if (this.colorInscription / this.hueState.end >= 1) {
-        console.log(this.speedUpdateColorState, 111)
         this.colorInscription = this.hueState.start
       }
-      // }}, this.speedUpdateColorState)
+      }, this.speedUpdateColorState)
+    },
+    updateColorStartFunc() {
+      clearInterval(this.timerId)
+      this.updateColor()
+    },
+  },
+  watch: {
+    speedUpdateColorState: {
+      handler() {
+        this.updateColorFunc()
+      }
     }
   },
 }
