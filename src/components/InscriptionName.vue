@@ -54,7 +54,7 @@ export default {
       }
     },
     stepColor() {
-      return Math.ceil(360  / this.getTimesInscription);
+      return Math.ceil(this.getHue.end  / this.getTimesInscription);
     },
     startColor() {
       return this.stepColor * this.order;
