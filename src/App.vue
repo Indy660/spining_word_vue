@@ -5,23 +5,23 @@
       class="main"
       @mouseleave="returnDefaultIndex"
   >
-    <template v-for="item in cellsAtScreen">
+    <template v-for="(item, key) in cellsAtScreen">
       <CellComponent
           @click.native="showSidebarFunc(false)"
-          @mouseenter.native="changeIndex(item)"
-          :key="item"
+          @mouseenter.native="changeIndex(key)"
+          :key="key"
       />
     </template>
 
     <div class="content">
-      <template v-for="item in getTimesInscription">
+      <template v-for="(item, key) in getTimesInscription">
         <InscriptionName
             :positionX="mousePositionX"
             :positionY="mousePositionY"
             :basicPositionX="basicPositionX"
             :basicPositionY="basicPositionY"
             :order="item - 1"
-            :key="item"
+            :key="key"
         />
       </template>
     </div>
